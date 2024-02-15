@@ -1,18 +1,8 @@
-﻿bool IsAnyWordUppercase(IEnumerable<string> words)
+﻿bool isAnyGreaterThan100(int[] numbers)
 {
-    foreach (var word in words)
+    foreach (var number in numbers)
     {
-        bool allAreUppercase = true;
-
-        foreach (var letter in word)
-        {
-            if (char.IsLower(letter))
-            {
-                allAreUppercase = false;
-            }
-        }
-
-        if (allAreUppercase)
+        if (number > 100)
         {
             return true;
         }
@@ -21,18 +11,22 @@
     return false;
 }
 
-var wordsNoUppercase = new[] { "red", "green", "blue" };
-var wordsWithUppercase = new[] { "red", "GREEN", "blue" };
-
-Console.WriteLine(IsAnyWordUppercase(wordsNoUppercase));
-Console.WriteLine(IsAnyWordUppercase(wordsWithUppercase));
-
-bool IsAnyWordUppercaseLinq(IEnumerable<string> words)
+bool isAnyEven(int[] numbers)
 {
-    return words.Any(word => word.All(letter => char.IsUpper(letter)));
+    foreach (var number in numbers)
+    {
+        if (number % 2 == 0)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
-Console.WriteLine(IsAnyWordUppercaseLinq(wordsNoUppercase));
-Console.WriteLine(IsAnyWordUppercaseLinq(wordsWithUppercase));
+var numbers = new[] { 1, 4, 6, 29, 200, 50 };
+
+Console.WriteLine("isAnyGreaterThan100 " + isAnyGreaterThan100(numbers));
+Console.WriteLine("isAnyEven " + isAnyEven(numbers));
 
 Console.ReadLine();
