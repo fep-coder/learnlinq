@@ -1,19 +1,16 @@
-﻿//var allPeopleInTheWorldOver18 = people.Where(x => x.age > 18);
+﻿var numbers = new[] { 1, 10, 5, 8, 3, 2 };
 
-//var take100 = allPeopleInTheWorldOver18.Take(100);
+var smallNumbersMethodSyntax = numbers
+                                .Where(number => number < 5)
+                                .OrderBy(number => number);
 
-var names = new List<string> { "John", "Mary", "Bob", "Jack" };
+var smallNumbersQuerySyntax = from number in numbers
+                              where number < 5
+                              orderby number
+                              select number;
 
-var namesStartWithJ = names
-    .Where(name =>
-        {
-            Console.WriteLine("Checking name: " + name);
-            return name.StartsWith('J');
-        });
+Console.WriteLine("smallNumbersMethodSyntax " + string.Join(", ", smallNumbersMethodSyntax));
+Console.WriteLine("smallNumbersQuerySyntax " + string.Join(", ", smallNumbersQuerySyntax));
 
-foreach (var name in namesStartWithJ)
-{
-    Console.WriteLine(name);
-}
 
 Console.ReadLine();
