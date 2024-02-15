@@ -2,7 +2,7 @@
 {
     foreach (var number in numbers)
     {
-        if (number > 100)
+        if (isGreaterThan100(number))
         {
             return true;
         }
@@ -11,17 +11,27 @@
     return false;
 }
 
+bool isGreaterThan100(int number)
+{
+    return number > 100;
+}
+
 bool isAnyEven(int[] numbers)
 {
     foreach (var number in numbers)
     {
-        if (number % 2 == 0)
+        if (isEven(number))
         {
             return true;
         }
     }
 
     return false;
+}
+
+bool isEven(int number)
+{
+    return number % 2 == 0;
 }
 
 var numbers = new[] { 1, 4, 6, 29, 200, 50 };
