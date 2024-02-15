@@ -1,19 +1,19 @@
-﻿var words = new List<string> { "a", "bb", "ccc", "dddd" };
+﻿//var allPeopleInTheWorldOver18 = people.Where(x => x.age > 18);
 
-var shortWords = words.Where(x => x.Length < 3).ToList();
+//var take100 = allPeopleInTheWorldOver18.Take(100);
 
-Console.WriteLine("First iteration:");
-foreach (var word in shortWords)
+var names = new List<string> { "John", "Mary", "Bob", "Jack" };
+
+var namesStartWithJ = names
+    .Where(name =>
+        {
+            Console.WriteLine("Checking name: " + name);
+            return name.StartsWith('J');
+        });
+
+foreach (var name in namesStartWithJ)
 {
-    Console.WriteLine(word);
-}
-
-words.Add("e");
-
-Console.WriteLine("Second iteration:");
-foreach (var word in shortWords)
-{
-    Console.WriteLine(word);
+    Console.WriteLine(name);
 }
 
 Console.ReadLine();
