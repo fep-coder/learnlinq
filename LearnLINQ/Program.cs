@@ -1,16 +1,11 @@
-﻿// OfType 
+﻿// Prepend and Append
 
 using LearnLINQ;
 
-var objects = new object[] { 1, "red", 2, "green", new List<int>(), "blue", true };
+var append = Data.Numbers.Append(1000);
+var prepend = Data.Numbers.Prepend(0);
 
-var strings = objects.OfType<string>();
-
-Console.WriteLine("strings \n" + string.Join("\n", strings));
-
-
-// Distinct
-var distinctNumbers = Data.Numbers.Distinct();
-Console.WriteLine("distinctNumbers \n" + string.Join("\n", distinctNumbers));
+Console.WriteLine("append \n" + string.Join("\n", append));
+Console.WriteLine("prepend \n" + string.Join("\n", prepend));
 
 Console.ReadLine();
