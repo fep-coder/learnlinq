@@ -1,32 +1,23 @@
-﻿// Aggregate
+﻿// Zip
 
 using LearnLINQ;
 
-var sumOfNumbers = Data.Numbers.Aggregate((sum, nextNumber) => sum + nextNumber);
-Console.WriteLine("sumOfNumbers " + string.Join(", ", sumOfNumbers));
+var numbersZippedWithWords = Data.Numbers
+                    .Zip(Data.Words,
+                        (number, word) => $"{number}, {word}"
+                     );
 
-var words = "red green blue";
+Console.WriteLine("numbersZippedWithWords \n" + string.Join("\n", numbersZippedWithWords));
 
-var longestWord = words.Split(" ")
-    .Aggregate(
-        (longestSoFar, nextWord) =>
-            nextWord.Length >
-                    longestSoFar.Length ?
-                    nextWord : longestSoFar
-    );
-Console.WriteLine("longestWord " + longestWord);
+var countries = new[] { "USA", "Japan" };
+var currencies = new[] { "USD", "Yen" };
 
-var jointWords = Data.Words
-                    .Aggregate(
-                        (resultSoFar, next) => resultSoFar + ", " + next
-                    );
-Console.WriteLine("jointWords " + string.Join("", jointWords));
-
-var allLengths = words.Split(" ")
-    .Aggregate(
-        Enumerable.Empty<int>(),
-        (lengthsCollection, next) => lengthsCollection.Append(next.Length)
-    );
-Console.WriteLine("allLengths \n" + string.Join("\n", allLengths));
+var countryCurrencyDictionary = countries
+                                    .Zip(currencies)
+                                    .ToDictionary(
+                                        tuple => tuple.First,
+                                        tuple => tuple.Second
+                                    );
+Console.WriteLine("countryCurrencyDictionary \n" + string.Join("\n", countryCurrencyDictionary));
 
 Console.ReadLine();
