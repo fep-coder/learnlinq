@@ -1,22 +1,14 @@
-﻿// Any 
+﻿// All
 
 using LearnLINQ;
 
-var isAnyGreaterThan10 = Data.Numbers.Any(x => x > 10);
-Console.WriteLine("isAnyGreaterThan10 " + isAnyGreaterThan10);
+var allGreaterThanZero = Data.Numbers.All(x => x > 0);
+Console.WriteLine("allGreaterThanZero " + allGreaterThanZero);
 
-var isAnyMeatChicken= Data.Food.Any(food => food.Name == "Chicken");
-Console.WriteLine("isAnyMeatChicken " + isAnyMeatChicken);
+var isAllFoodPriced = Data.Food.All(x => x.Price > 0);
+Console.WriteLine("isAllFoodPriced " + isAllFoodPriced);
 
-var isAnyFoodFruit= Data.Food.Any(food => food.FoodType == FoodType.Fruit);
-Console.WriteLine("isAnyFoodFruit " + isAnyFoodFruit);
-
-var isNameLengthAndOddId = 
-            Data.Food
-            .Any(food => food.Name.Length > 8 && food.Id % 2 == 1);
-Console.WriteLine("isNameLengthAndOddId " + isNameLengthAndOddId);
-
-var isNotEmpty = Data.Food.Any();
-Console.WriteLine("isNotEmpty " + isNotEmpty);
+var isThereOnlyMeat = Data.Food.All(x => x.FoodType == FoodType.Meat);
+Console.WriteLine("isThereOnlyMeat " + isThereOnlyMeat);
 
 Console.ReadLine();
