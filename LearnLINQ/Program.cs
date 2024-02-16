@@ -1,11 +1,12 @@
-﻿// Prepend and Append
+﻿// Concat and Union
 
-using LearnLINQ;
+var numbers1 = new[] { 1, 2, 3 };
+var numbers2 = new[] { 3, 4, 5, 6 };
 
-var append = Data.Numbers.Append(1000);
-var prepend = Data.Numbers.Prepend(0);
+var allNumbers = numbers1.Concat(numbers2);
+Console.WriteLine("allNumbers \n" + string.Join("\n", allNumbers));
 
-Console.WriteLine("append \n" + string.Join("\n", append));
-Console.WriteLine("prepend \n" + string.Join("\n", prepend));
+var allNumbersUnion = numbers1.Union(numbers2);
+Console.WriteLine("allNumbersUnion \n" + string.Join("\n", allNumbersUnion));
 
 Console.ReadLine();
