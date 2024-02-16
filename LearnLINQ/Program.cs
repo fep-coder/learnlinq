@@ -1,16 +1,22 @@
-﻿var numbers = new[] { 1, 10, 5, 8, 3, 2 };
+﻿// Any 
 
-var smallNumbersMethodSyntax = numbers
-                                .Where(number => number < 5)
-                                .OrderBy(number => number);
+using LearnLINQ;
 
-var smallNumbersQuerySyntax = from number in numbers
-                              where number < 5
-                              orderby number
-                              select number;
+var isAnyGreaterThan10 = Data.Numbers.Any(x => x > 10);
+Console.WriteLine("isAnyGreaterThan10 " + isAnyGreaterThan10);
 
-Console.WriteLine("smallNumbersMethodSyntax " + string.Join(", ", smallNumbersMethodSyntax));
-Console.WriteLine("smallNumbersQuerySyntax " + string.Join(", ", smallNumbersQuerySyntax));
+var isAnyMeatChicken= Data.Food.Any(food => food.Name == "Chicken");
+Console.WriteLine("isAnyMeatChicken " + isAnyMeatChicken);
 
+var isAnyFoodFruit= Data.Food.Any(food => food.FoodType == FoodType.Fruit);
+Console.WriteLine("isAnyFoodFruit " + isAnyFoodFruit);
+
+var isNameLengthAndOddId = 
+            Data.Food
+            .Any(food => food.Name.Length > 8 && food.Id % 2 == 1);
+Console.WriteLine("isNameLengthAndOddId " + isNameLengthAndOddId);
+
+var isNotEmpty = Data.Food.Any();
+Console.WriteLine("isNotEmpty " + isNotEmpty);
 
 Console.ReadLine();
