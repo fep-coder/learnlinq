@@ -1,32 +1,20 @@
-﻿// Where
+﻿// Take, TakeLast and TakeWhile
 
 using LearnLINQ;
 
-var allEvenNumbers = Data.Numbers.Where(x => x % 2 == 0);
-Console.WriteLine("allEvenNumbers \n" + string.Join("\n", allEvenNumbers));
+var firstThreeNumbers = Data.Numbers.Take(3);
+Console.WriteLine("firstThreeNumbers \n" + string.Join("\n", firstThreeNumbers));
 
-var allEvenNumbersOver300 = Data.Numbers.Where(x => x % 2 == 0 && x > 300);
-Console.WriteLine("allEvenNumbersOver300 \n" + string.Join("\n", allEvenNumbersOver300));
+var moreNumbers = Data.Numbers.Take(300);
+Console.WriteLine("moreNumbers \n" + string.Join("\n", moreNumbers));
 
-var verySpecificFood = Data.Food.Where(x =>
-                            (x.FoodType == FoodType.Fruit ||
-                            x.FoodType == FoodType.Vegetables) &&
-                            x.Price < 2 && x.Id % 2 == 1);
+var lastThreeNumbers = Data.Numbers.TakeLast(3);
+Console.WriteLine("lastThreeNumbers \n" + string.Join("\n", lastThreeNumbers));
 
-Console.WriteLine("verySpecificFood \n" + string.Join("\n", verySpecificFood));
+var secondLargestNumber = Data.Numbers.OrderBy(x => x).TakeLast(2).First();
+Console.WriteLine("secondLargestNumber " + secondLargestNumber);
 
-var selectedIndexes = new[] { 0, 2, 5 };
-var foodSelectedIndexes = Data.Food
-                            .Where((food, index) =>
-                            food.Price < 4 &&
-                            selectedIndexes.Contains(index));
-
-Console.WriteLine("foodSelectedIndexes \n" + string.Join("\n", foodSelectedIndexes));
-
-var countOfExpensiveFood = Data.Food.Where(x => x.Price > 4).Count();
-var countOfExpensiveFood2 = Data.Food.Count(x => x.Price > 4);
-Console.WriteLine("Count " +
-                            countOfExpensiveFood + " " +
-                            countOfExpensiveFood2);
+var takeUntil12 = Data.Numbers.TakeWhile(x => x <= 12);
+Console.WriteLine("takeUntil12 \n" + string.Join("\n", takeUntil12));
 
 Console.ReadLine();
