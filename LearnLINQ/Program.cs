@@ -1,18 +1,22 @@
-﻿// ElementAt
+﻿// First and Last
 
 using LearnLINQ;
 
-var firstNumber = Data.Numbers[0];
+var firstNumber = Data.Numbers.First();
 Console.WriteLine("firstNumber " + firstNumber);
 
-var firstFoodList = Data.Food.ToList();
-Console.WriteLine("firstFoodList " + firstFoodList[0]);
+var firstEvenNumber = Data.Numbers.First(x => x % 2 == 0);
+Console.WriteLine("firstEvenNumber " + firstEvenNumber);
 
-var firstFoodLinq = Data.Food.ElementAt(0);
-Console.WriteLine("firstFoodLinq " + firstFoodLinq);
+var lastVegetable = Data.Food.Last(x => x.FoodType == FoodType.Vegetables);
+Console.WriteLine("lastVegetable " + lastVegetable);
 
-//var noIndex = Data.Food.ElementAt(100);
-var noIndex = Data.Food.ElementAtOrDefault(100);
-Console.WriteLine("noIndex " + noIndex);
+//var lastFoodOver100 = Data.Food.Last(x => x.Price > 100);
+var lastFoodOver100 = Data.Food.LastOrDefault(x => x.Price > 100);
+Console.WriteLine("lastFoodOver100 " + lastFoodOver100);
+
+var mostExpensiveFood = Data.Food.OrderBy(x => x.Price).Last();
+Console.WriteLine("mostExpensiveFood " + mostExpensiveFood);
+
 
 Console.ReadLine();
