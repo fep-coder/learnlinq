@@ -1,37 +1,49 @@
-﻿// Select
+﻿// SelectMany
 
 using LearnLINQ;
 
-var doubledNumbers = Data.Numbers.Select(x => x * 2);
-Console.WriteLine("doubledNumbers \n" + string.Join("\n", doubledNumbers));
+var peopleFood = Data.People.SelectMany(x => x.Food);
+Console.WriteLine("peopleFood \n" + string.Join("\n", peopleFood));
 
-var uppercaseWords = Data.Words.Select(x => x.ToUpper());
-Console.WriteLine("uppercaseWords \n" + string.Join("\n", uppercaseWords));
+var peopleStartWithJ = Data.People
+                            .Where(x => x.Name.StartsWith('J'))
+                            .SelectMany(x => x.Food)
+                            .Select(x => x.Name);
+Console.WriteLine("peopleStartWithJ \n" + string.Join("\n", peopleStartWithJ));
 
-var numberToString = Data.Numbers
-                        .Select(number => number.ToString()); // works
+var nestedListOfNumbers = new List<List<int>>
+{
+    new() { 1, 2, 3 },
+    new() { 1, 2, 3 },
+    new() { 1, 2, 3 },
+};
+var sum = nestedListOfNumbers.SelectMany(x => x).Sum();
+Console.WriteLine("sum " + sum);
 
-var numberedWords = Data.Words.Select((word, index) => $"{index}. {word}");
-Console.WriteLine("numberedWords \n" + string.Join("\n", numberedWords));
+var veryNestedListOfNumbers = new List<List<List<int>>>
+{
+    new()
+    {
+        new() { 1, 2, 3 },
+        new() { 1, 2, 3 },
+        new() { 1, 2, 3 },
+    },
+    new()
+    {
+        new() { 1, 2, 3 },
+        new() { 1, 2, 3 },
+        new() { 1, 2, 3 },
+    },
 
-var prices = Data.Food.Select(x => x.Price);
-Console.WriteLine("prices \n" + string.Join("\n", prices));
+};
 
-var foodOverOne = Data.Food
-    .Where(food => food.Price > 1)
-    .Select(food => food.FoodType)
-    .Distinct();
-Console.WriteLine("foodOverOne \n" + string.Join("\n", foodOverOne));
+var sum2 = veryNestedListOfNumbers.SelectMany(x => x).SelectMany(x => x).Sum();
+Console.WriteLine("sum2 " + sum2);
 
-var foodFirstLetter = Data.Food
-                        .OrderBy(x => x.Name)
-                        .Select(x => x.Name.First());
-Console.WriteLine("foodFirstLetter \n" + string.Join("\n", foodFirstLetter));
-
-var foodData = Data.Food
-                    .Select(x => $"Food name: {x.Name} " +
-                    $"of type {x.FoodType} " +
-                    $"and price ${x.Price} ");
-Console.WriteLine("foodData \n" + string.Join("\n", foodData));
+var personFoodInfo =
+    Data.People
+        .SelectMany(person => person.Food,
+        (person, food) => $"{person.Name} likes {food.Name}");
+Console.WriteLine("personFoodInfo \n" + string.Join("\n", personFoodInfo));
 
 Console.ReadLine();
