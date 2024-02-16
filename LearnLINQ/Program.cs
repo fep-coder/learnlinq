@@ -1,17 +1,18 @@
-﻿// Sum
+﻿// ElementAt
 
 using LearnLINQ;
 
-var sumNumbers = Data.Numbers.Sum();
-Console.WriteLine("sumNumbers " + sumNumbers);
+var firstNumber = Data.Numbers[0];
+Console.WriteLine("firstNumber " + firstNumber);
 
-var sumFoodPrice = Data.Food.Sum(x => x.Price);
-Console.WriteLine("sumFoodPrice " + sumFoodPrice);
+var firstFoodList = Data.Food.ToList();
+Console.WriteLine("firstFoodList " + firstFoodList[0]);
 
-var emptyNumbers = new int[0];
+var firstFoodLinq = Data.Food.ElementAt(0);
+Console.WriteLine("firstFoodLinq " + firstFoodLinq);
 
-var sumpEmpty = emptyNumbers.Sum();
-
-Console.WriteLine("sumpEmpty " + sumpEmpty);
+//var noIndex = Data.Food.ElementAt(100);
+var noIndex = Data.Food.ElementAtOrDefault(100);
+Console.WriteLine("noIndex " + noIndex);
 
 Console.ReadLine();
