@@ -1,19 +1,11 @@
-﻿// Count
+﻿// Contains
 
 using LearnLINQ;
 
-var countMeat = Data.Food.Count(x => x.FoodType == FoodType.Meat);
-Console.WriteLine("countMeat " + countMeat);
+var isSixPresent = Data.Numbers.Contains(6);
+Console.WriteLine("isSixPresent " + isSixPresent);
 
-var countChickenMeat = Data.Food.LongCount(x => x.Name == "Chicken");
-Console.WriteLine("countChickenMeat " + countChickenMeat);
-
-var meatCheaperThanSix = 
-            Data.Food
-            .Count(x => x.FoodType == FoodType.Meat && x.Price < 6);
-Console.WriteLine("meatCheaperThanSix " + meatCheaperThanSix);
-
-var foodCount = Data.Food.Count();
-Console.WriteLine("foodCount " + foodCount);
+var isLionPresent = Data.Words.Contains("lion");
+Console.WriteLine("isLionPresent " + isLionPresent);
 
 Console.ReadLine();
