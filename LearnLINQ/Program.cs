@@ -1,20 +1,17 @@
-﻿// Take, TakeLast and TakeWhile
+﻿// Skip, SkipLast and SkipWhile
 
 using LearnLINQ;
 
-var firstThreeNumbers = Data.Numbers.Take(3);
-Console.WriteLine("firstThreeNumbers \n" + string.Join("\n", firstThreeNumbers));
+var skipThreeNumbers = Data.Numbers.Skip(3);
+Console.WriteLine("skipThreeNumbers \n" + string.Join("\n", skipThreeNumbers));
 
-var moreNumbers = Data.Numbers.Take(300);
-Console.WriteLine("moreNumbers \n" + string.Join("\n", moreNumbers));
+var skipLastThreeNumbers = Data.Numbers.SkipLast(3);
+Console.WriteLine("skipLastThreeNumbers \n" + string.Join("\n", skipLastThreeNumbers));
 
-var lastThreeNumbers = Data.Numbers.TakeLast(3);
-Console.WriteLine("lastThreeNumbers \n" + string.Join("\n", lastThreeNumbers));
+var getThirdAndFourthFood = Data.Food.Skip(2).Take(2);
+Console.WriteLine("getThirdAndFourthFood \n" + string.Join("\n", getThirdAndFourthFood));
 
-var secondLargestNumber = Data.Numbers.OrderBy(x => x).TakeLast(2).First();
-Console.WriteLine("secondLargestNumber " + secondLargestNumber);
-
-var takeUntil12 = Data.Numbers.TakeWhile(x => x <= 12);
-Console.WriteLine("takeUntil12 \n" + string.Join("\n", takeUntil12));
+var skipUntil100 = Data.Numbers.SkipWhile(x => x <= 100);
+Console.WriteLine("skipUntil100 \n" + string.Join("\n", skipUntil100));
 
 Console.ReadLine();
