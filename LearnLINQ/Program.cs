@@ -1,49 +1,22 @@
-﻿// SelectMany
+﻿// Generating new collections
 
 using LearnLINQ;
 
-var peopleFood = Data.People.SelectMany(x => x.Food);
-Console.WriteLine("peopleFood \n" + string.Join("\n", peopleFood));
+var emptyInts = Enumerable.Empty<int>();
+if (!emptyInts.Any()) Console.WriteLine("Empty");
 
-var peopleStartWithJ = Data.People
-                            .Where(x => x.Name.StartsWith('J'))
-                            .SelectMany(x => x.Food)
-                            .Select(x => x.Name);
-Console.WriteLine("peopleStartWithJ \n" + string.Join("\n", peopleStartWithJ));
+var tenCopies = Enumerable.Repeat(1, 10);
+Console.WriteLine("tenCopies " + string.Join(", ", tenCopies));
 
-var nestedListOfNumbers = new List<List<int>>
-{
-    new() { 1, 2, 3 },
-    new() { 1, 2, 3 },
-    new() { 1, 2, 3 },
-};
-var sum = nestedListOfNumbers.SelectMany(x => x).Sum();
-Console.WriteLine("sum " + sum);
+var copiesWithIndex = Enumerable
+                        .Repeat("banana", 3)
+                        .Select((x, i) => $"{i + 1}. {x}");
+Console.WriteLine("copiesWithIndex " + string.Join(", ", copiesWithIndex));
 
-var veryNestedListOfNumbers = new List<List<List<int>>>
-{
-    new()
-    {
-        new() { 1, 2, 3 },
-        new() { 1, 2, 3 },
-        new() { 1, 2, 3 },
-    },
-    new()
-    {
-        new() { 1, 2, 3 },
-        new() { 1, 2, 3 },
-        new() { 1, 2, 3 },
-    },
+var oneToTen = Enumerable.Range(1, 10);
+Console.WriteLine("oneToTen " + string.Join(", ", oneToTen));
 
-};
-
-var sum2 = veryNestedListOfNumbers.SelectMany(x => x).SelectMany(x => x).Sum();
-Console.WriteLine("sum2 " + sum2);
-
-var personFoodInfo =
-    Data.People
-        .SelectMany(person => person.Food,
-        (person, food) => $"{person.Name} likes {food.Name}");
-Console.WriteLine("personFoodInfo \n" + string.Join("\n", personFoodInfo));
+var defaultIfEmpty = Data.Numbers.DefaultIfEmpty();
+Console.WriteLine("defaultIfEmpty " + string.Join(", ", defaultIfEmpty));
 
 Console.ReadLine();
