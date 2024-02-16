@@ -1,37 +1,13 @@
-﻿// ToLookup and GroupBy
+﻿// Intersect and Except
 
-using LearnLINQ;
 
-var foodPriceByTypeLookup =
-    Data.Food
-        .ToLookup(
-            food => food.FoodType, // key
-            food => food.Price // value
-        );
+var numbers1 = new[] { 1, 2, 3, 4, 5, 6 };
+var numbers2 = new[] { 4, 5, 6, 7, 8, 9 };
 
-var sumOfPricesByType =
-                    foodPriceByTypeLookup
-                        .ToDictionary(
-                            lookup => lookup.Key,
-                            lookup => lookup.Sum()
-                        );
+var numbersIntersect = numbers1.Intersect(numbers2);
+Console.WriteLine("numbersIntersect " + string.Join(", ", numbersIntersect));
 
-Console.WriteLine("sumOfPricesByType " + string.Join(", ", sumOfPricesByType));
-
-var groupings =
-    Data.Food
-        .GroupBy(
-            food => food.FoodType, // key
-            food => food.Price // value
-        );
-
-var sumOfPricesByType2 =
-                    foodPriceByTypeLookup
-                        .ToDictionary(
-                            x => x.Key,
-                            x => x.Sum()
-                        );
-
-Console.WriteLine("sumOfPricesByType2 " + string.Join(", ", sumOfPricesByType2));
+var numbersExcept = numbers1.Except(numbers2);
+Console.WriteLine("numbersExcept " + string.Join(", ", numbersExcept));
 
 Console.ReadLine();
