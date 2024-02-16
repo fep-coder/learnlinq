@@ -2,7 +2,7 @@
 {
     class Data
     {
-        public static int[] Numbers = [1, 3, 6, 8, 12];
+        public static int[] Numbers = [1, 3, 6, 8, 100, 11, 12];
 
         public static string[] Words = ["lion", "tiger", "giraffe"];
 
