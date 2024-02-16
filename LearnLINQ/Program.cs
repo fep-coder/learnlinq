@@ -1,24 +1,23 @@
-﻿// OrderBy
+﻿// Min and Max
 
 using LearnLINQ;
 
-var foodOrderedByName = Data.Food.OrderBy(x => x.Name);
-Console.WriteLine("foodOrderedByName \n" + 
-                    string.Join("\n", foodOrderedByName));
+var smallest = Data.Numbers.Min();
+var largest = Data.Numbers.Max();
 
-var foodOrderedByNameDesc = Data.Food.OrderByDescending(x => x.Name);
-Console.WriteLine("foodOrderedByNameDesc \n" + 
-                    string.Join("\n", foodOrderedByNameDesc));
+Console.WriteLine("smallest " + smallest);
+Console.WriteLine("largest " + largest);
 
-var orderedNumbers = Data.Numbers.OrderBy(number => number);
-Console.WriteLine("orderedNumbers \n" +
-                    string.Join("\n", orderedNumbers));
+var minPrice = Data.Food.Min(x => x.Price);
+var maxPrice = Data.Food.Max(x => x.Price);
 
-var foodOrderedByTypeThenName = 
-                                Data.Food
-                                .OrderBy(x => x.FoodType)
-                                .ThenBy(x => x.Name);
-Console.WriteLine("foodOrderedByTypeThenName \n" +
-                    string.Join("\n", foodOrderedByTypeThenName));
+Console.WriteLine("minPrice " + minPrice);
+Console.WriteLine("maxPrice " + maxPrice);
+
+var minFood = Data.Food.Min();
+Console.WriteLine("minFood " + minFood);
+
+var emptyNumbers = new int[0];
+var minEmptyNumbers = emptyNumbers.Min();
 
 Console.ReadLine();
