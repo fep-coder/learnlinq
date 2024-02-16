@@ -1,14 +1,19 @@
-﻿// All
+﻿// Count
 
 using LearnLINQ;
 
-var allGreaterThanZero = Data.Numbers.All(x => x > 0);
-Console.WriteLine("allGreaterThanZero " + allGreaterThanZero);
+var countMeat = Data.Food.Count(x => x.FoodType == FoodType.Meat);
+Console.WriteLine("countMeat " + countMeat);
 
-var isAllFoodPriced = Data.Food.All(x => x.Price > 0);
-Console.WriteLine("isAllFoodPriced " + isAllFoodPriced);
+var countChickenMeat = Data.Food.LongCount(x => x.Name == "Chicken");
+Console.WriteLine("countChickenMeat " + countChickenMeat);
 
-var isThereOnlyMeat = Data.Food.All(x => x.FoodType == FoodType.Meat);
-Console.WriteLine("isThereOnlyMeat " + isThereOnlyMeat);
+var meatCheaperThanSix = 
+            Data.Food
+            .Count(x => x.FoodType == FoodType.Meat && x.Price < 6);
+Console.WriteLine("meatCheaperThanSix " + meatCheaperThanSix);
+
+var foodCount = Data.Food.Count();
+Console.WriteLine("foodCount " + foodCount);
 
 Console.ReadLine();
