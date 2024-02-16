@@ -1,11 +1,17 @@
-﻿// Average
+﻿// Sum
 
 using LearnLINQ;
 
-var average = Data.Numbers.Average();
-Console.WriteLine("average " + average);
+var sumNumbers = Data.Numbers.Sum();
+Console.WriteLine("sumNumbers " + sumNumbers);
 
-var averageFoodPrice = Data.Food.Average(x => x.Price);
-Console.WriteLine("averageFoodPrice " + averageFoodPrice);
+var sumFoodPrice = Data.Food.Sum(x => x.Price);
+Console.WriteLine("sumFoodPrice " + sumFoodPrice);
+
+var emptyNumbers = new int[0];
+
+var sumpEmpty = emptyNumbers.Sum();
+
+Console.WriteLine("sumpEmpty " + sumpEmpty);
 
 Console.ReadLine();
