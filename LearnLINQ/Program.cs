@@ -1,17 +1,16 @@
-﻿// Skip, SkipLast and SkipWhile
+﻿// OfType 
 
 using LearnLINQ;
 
-var skipThreeNumbers = Data.Numbers.Skip(3);
-Console.WriteLine("skipThreeNumbers \n" + string.Join("\n", skipThreeNumbers));
+var objects = new object[] { 1, "red", 2, "green", new List<int>(), "blue", true };
 
-var skipLastThreeNumbers = Data.Numbers.SkipLast(3);
-Console.WriteLine("skipLastThreeNumbers \n" + string.Join("\n", skipLastThreeNumbers));
+var strings = objects.OfType<string>();
 
-var getThirdAndFourthFood = Data.Food.Skip(2).Take(2);
-Console.WriteLine("getThirdAndFourthFood \n" + string.Join("\n", getThirdAndFourthFood));
+Console.WriteLine("strings \n" + string.Join("\n", strings));
 
-var skipUntil100 = Data.Numbers.SkipWhile(x => x <= 100);
-Console.WriteLine("skipUntil100 \n" + string.Join("\n", skipUntil100));
+
+// Distinct
+var distinctNumbers = Data.Numbers.Distinct();
+Console.WriteLine("distinctNumbers \n" + string.Join("\n", distinctNumbers));
 
 Console.ReadLine();
