@@ -1,13 +1,32 @@
-﻿// Intersect and Except
+﻿// Aggregate
 
+using LearnLINQ;
 
-var numbers1 = new[] { 1, 2, 3, 4, 5, 6 };
-var numbers2 = new[] { 4, 5, 6, 7, 8, 9 };
+var sumOfNumbers = Data.Numbers.Aggregate((sum, nextNumber) => sum + nextNumber);
+Console.WriteLine("sumOfNumbers " + string.Join(", ", sumOfNumbers));
 
-var numbersIntersect = numbers1.Intersect(numbers2);
-Console.WriteLine("numbersIntersect " + string.Join(", ", numbersIntersect));
+var words = "red green blue";
 
-var numbersExcept = numbers1.Except(numbers2);
-Console.WriteLine("numbersExcept " + string.Join(", ", numbersExcept));
+var longestWord = words.Split(" ")
+    .Aggregate(
+        (longestSoFar, nextWord) =>
+            nextWord.Length >
+                    longestSoFar.Length ?
+                    nextWord : longestSoFar
+    );
+Console.WriteLine("longestWord " + longestWord);
+
+var jointWords = Data.Words
+                    .Aggregate(
+                        (resultSoFar, next) => resultSoFar + ", " + next
+                    );
+Console.WriteLine("jointWords " + string.Join("", jointWords));
+
+var allLengths = words.Split(" ")
+    .Aggregate(
+        Enumerable.Empty<int>(),
+        (lengthsCollection, next) => lengthsCollection.Append(next.Length)
+    );
+Console.WriteLine("allLengths \n" + string.Join("\n", allLengths));
 
 Console.ReadLine();
