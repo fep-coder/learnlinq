@@ -1,30 +1,48 @@
-﻿// select query syntax 
+﻿// SelectMany query syntax 
 
 using LearnLINQ;
 
-var doubled = from number in Data.Numbers
-              select number * 2;
-Console.WriteLine("doubled \n" + string.Join("\n", doubled));
+var nestedListOfNumbers = new List<List<int>>
+{
+    new() {1, 2, 3 },
+    new() {1, 2, 3 },
+    new() {1, 2, 3 },
+};
 
-var wordsUppercase = from word in Data.Words
-                     select word.ToUpper();
-Console.WriteLine("wordsUppercase \n" + string.Join("\n", wordsUppercase));
+var allNumbers = from list in nestedListOfNumbers
+                 from number in list
+                 select number;
 
-var foodNames = from food in Data.Food
-                select food.Name;
-Console.WriteLine("foodNames \n" + string.Join("\n", foodNames));
+Console.WriteLine("allNumbers \n" + string.Join("\n", allNumbers));
 
-var pricesOverOne = (from food in Data.Food
-                     where food.Price > 1
-                     select food.FoodType).Distinct();
-Console.WriteLine("pricesOverOne \n" + string.Join("\n", pricesOverOne));
+var peopleFood = from person in Data.People
+                 where person.Name.StartsWith('J')
+                 from food in person.Food
+                 select food;
 
-var foodInfo = from food in Data.Food
-               orderby food.Name
-               select $"{food.Name.First()}. " +
-                       $"{food.FoodType} " +
-                       $"${food.Price}";
+Console.WriteLine("peopleFood \n" + string.Join("\n", peopleFood));
 
-Console.WriteLine("foodInfo \n" + string.Join("\n", foodInfo));
+var veryNestedListOfNumbers = new List<List<List<int>>>
+{
+    new()
+    {
+        new() {1, 2, 3 },
+        new() {1, 2, 3 },
+        new() {1, 2, 3 },
+    },
+    new()
+    {
+        new() {1, 2, 3 },
+        new() {1, 2, 3 },
+        new() {1, 2, 3 },
+    },
+};
+
+var flattenedList = from nestedList in veryNestedListOfNumbers
+                    from list in nestedList
+                    from number in list
+                    select number;
+
+Console.WriteLine("flattenedList \n" + string.Join("\n", flattenedList));
 
 Console.ReadLine();
