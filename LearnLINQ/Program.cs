@@ -1,48 +1,36 @@
-﻿// SelectMany query syntax 
+﻿// Join query syntax
 
 using LearnLINQ;
 
-var nestedListOfNumbers = new List<List<int>>
-{
-    new() {1, 2, 3 },
-    new() {1, 2, 3 },
-    new() {1, 2, 3 },
-};
+var innerJoin = from person in Data.People
+                join reservation in Data.Reservations
+                on person.Id equals reservation.PersonId
+                select $"{person.Name} has a reservation on " +
+                        $"{reservation.Date}";
 
-var allNumbers = from list in nestedListOfNumbers
-                 from number in list
-                 select number;
+Console.WriteLine("innerJoin \n" + string.Join("\n", innerJoin));
 
-Console.WriteLine("allNumbers \n" + string.Join("\n", allNumbers));
+var innerJoinThreeTables = from person in Data.People
+                           join reservation in Data.Reservations
+                           on person.Id equals reservation.PersonId
+                           join restaurant in Data.Restaurants
+                           on reservation.RestaurantId equals restaurant.Id
+                           select $"{person.Name} has a reservation on " +
+                                   $"{reservation.Date} " +
+                                   $"at the {restaurant.Name}";
 
-var peopleFood = from person in Data.People
-                 where person.Name.StartsWith('J')
-                 from food in person.Food
-                 select food;
+Console.WriteLine("innerJoinThreeTables \n" + string.Join("\n", innerJoinThreeTables));
 
-Console.WriteLine("peopleFood \n" + string.Join("\n", peopleFood));
+var leftJoin = from person in Data.People
+               join reservation in Data.Reservations
+               on person.Id equals reservation.PersonId
+               into personReservations
+               from singleReservation
+               in personReservations.DefaultIfEmpty()
+               select $"{person.Name} has a reservation on " +
+                       $"{singleReservation?.Date}";
 
-var veryNestedListOfNumbers = new List<List<List<int>>>
-{
-    new()
-    {
-        new() {1, 2, 3 },
-        new() {1, 2, 3 },
-        new() {1, 2, 3 },
-    },
-    new()
-    {
-        new() {1, 2, 3 },
-        new() {1, 2, 3 },
-        new() {1, 2, 3 },
-    },
-};
+Console.WriteLine("leftJoin \n" + string.Join("\n", leftJoin));
 
-var flattenedList = from nestedList in veryNestedListOfNumbers
-                    from list in nestedList
-                    from number in list
-                    select number;
-
-Console.WriteLine("flattenedList \n" + string.Join("\n", flattenedList));
 
 Console.ReadLine();
